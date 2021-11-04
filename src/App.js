@@ -4,8 +4,16 @@ import TwitterMessage from "./components/TwitterMessage";
 
 class App extends Component {
 
+  state = {
+    maxChars: 280
+  }
+
   login = ({ username, password }) => {
-    console.log(`Logging in ${username} with password ${password}`);
+    this.preventDefault()
+    this.setState((prevState) => {
+      return {maxChars: prevState.maxChars - 20}
+    })
+
   };
 
   render() {
@@ -20,7 +28,7 @@ class App extends Component {
         <h1>
           <pre>TwitterMessage</pre>
         </h1>
-        <TwitterMessage maxChars={280} />
+        <TwitterMessage maxChars={this.state.maxChars} />
 
 
 
